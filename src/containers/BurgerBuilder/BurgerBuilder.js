@@ -1,19 +1,20 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Aux from "../../hoc/Auxilliary"
+import React, { Component } from 'react';
+import Aux from "../../hoc/Auxilliary";
+import Burger from '../../components/Burger/Burger';
 
 export default class BurgerBuilder extends Component {
-  static propTypes = {
-    prop: PropTypes
-  }
 
   /**
    * Life cycle mmethods
    */
   render() {
-    return (
-      this.burger // main burger controls
-    )
+    return ( //this.burger // main burger controls
+      <Aux>
+        <Burger>
+          <div> Build Controls </div>
+        </Burger>
+      </Aux>
+    );
   };
 
   /**
