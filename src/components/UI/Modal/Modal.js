@@ -1,6 +1,19 @@
 import React from "react";
 import classes from "./Modal.css";
 import Backdrop from '../Backdrop/Backdrop'
+
+/**
+ * Expected Prop Types
+ */
+/* eslint-disable */
+import PropTypes from 'prop-types';
+const propTypes = {
+    show: PropTypes.func,
+    clicked: PropTypes.func
+}
+/* eslint-enable */
+
+
 const modal = (props) => {
 
     console.log(props);

@@ -135,6 +135,12 @@ removeIngredientHandler = (type) => {
     )
   }
 
+  /**
+   * Modal Buttons
+   */
+  purchaseContinueHandler = () => {
+    alert('You continue!');
+  }
 
   /**
    * Life cycle mmethods
@@ -158,7 +164,10 @@ removeIngredientHandler = (type) => {
           modalClosed={this.purchaseCancelhandler}
         >
           <OrderSummary
-            ingredients={this.state.ingredients}>
+            ingredients={this.state.ingredients}
+            purchasedCancelled={this.purchaseCancelhandler}
+            purchaseContinued={this.purchaseContinueHandler}
+            >
           </OrderSummary>
         </Modal>
           

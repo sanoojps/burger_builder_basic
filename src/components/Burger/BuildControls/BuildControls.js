@@ -29,6 +29,20 @@ const controls =
         ),
 ]
 
+/**
+ * Expected Prop Types
+ */
+/* eslint-disable */
+import PropTypes from 'prop-types';
+const propTypes = {
+    totalPrice: PropTypes.number,
+    ingredientRemoved: PropTypes.func,
+    disabled: PropTypes.object,
+    purchaseHandler: PropTypes.func,
+    purchasable: PropTypes.bool
+}
+/* eslint-enable */
+
 const buildControls = (props) => {
     //console.log("props");
     //console.log(props);

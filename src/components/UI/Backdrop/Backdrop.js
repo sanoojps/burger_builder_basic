@@ -1,6 +1,16 @@
 import React from "react";
 import classes from './Backdrop.css';
 
+/**
+ * Expected Prop Types
+ */
+/* eslint-disable */
+import PropTypes from 'prop-types';
+const propTypes = {
+    clicked: PropTypes.func,
+}
+/* eslint-enable */
+
 const backdrop = (props) => {
     return (
         props.show ?

@@ -2,6 +2,18 @@ import React from "react";
 
 import classes from './BuildControl.css';
 
+/**
+ * Expected Prop Types
+ */
+/* eslint-disable */
+import PropTypes from 'prop-types';
+const propTypes = {
+    removed: PropTypes.func,
+    disabled: PropTypes.func,
+    added: PropTypes.func
+}
+/* eslint-enable */
+
 const buildControl = (props) => {
     return (
         <div className={classes.BuildControl}>
