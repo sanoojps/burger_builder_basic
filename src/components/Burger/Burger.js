@@ -10,9 +10,16 @@ const burger = (props) => {
     /**
      * Transform object to array
      */
-    const transformedIngredients = 
+    let transformedIngredients = 
     transformIngredients(props).map(
         (key) => {
+            /**
+             * array count check
+             */
+            console.log(props.ingredients[key]);
+            if (props.ingredients[key] < 0) {
+                return []
+            }
             return [...Array(props.ingredients[key])].map(
                 (_, i) => {
                    return ( 
@@ -32,10 +39,19 @@ const burger = (props) => {
         },[]
     ); // reduce
 
+    if (transformedIngredients.length === 0) {
+        transformedIngredients = 
+        (
+            <p>
+                Please start adding ingredients
+            </p>
+        )
+    }    
+
     return (
         <div className={classes.Burger}>
             <BurgerIngredients
-                type="bread-top">
+                type={BurgerIngredients.IngredientType.BreadTop}>
             </BurgerIngredients>
 
             {/* <BurgerIngredients
@@ -49,7 +65,7 @@ const burger = (props) => {
             {transformedIngredients}
 
             <BurgerIngredients
-                type="bread-bottom">
+                type={BurgerIngredients.IngredientType.BreadBottom}>
             </BurgerIngredients>
         </div>
 

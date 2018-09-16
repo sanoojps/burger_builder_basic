@@ -5,17 +5,28 @@ import classes from './BurgerIngredients.css'
 
 class BurgerIngredients extends Component {
 
+    static IngredientType = Object.freeze(
+        {
+            BreadBottom: "bread-bottom",
+            BreadTop: "bread-top",
+            Meat: "meat",
+            Cheese: "cheese",
+            Salad: "salad",
+            Bacon: "bacon",
+        }
+    );
+
     render() {
 
         let ingredient = null;
 
         switch (this.props.type) {
 
-            case "bread-bottom":
+            case BurgerIngredients.IngredientType.BreadBottom:
                 ingredient = <div className={classes.BreadBottom}></div>;
                 break;
 
-            case ("bread-top"):
+            case BurgerIngredients.IngredientType.BreadTop:
                 ingredient = (
                     <div className={classes.BreadTop}>
                         <div className={classes.Seeds1}>
@@ -27,19 +38,19 @@ class BurgerIngredients extends Component {
 
                 break;
 
-            case ("meat"):
+            case BurgerIngredients.IngredientType.Meat:
                 ingredient = <div className={classes.Meat}></div>;
                 break;
 
-            case ("cheese"):
+            case BurgerIngredients.IngredientType.Cheese:
                 ingredient = <div className={classes.Cheese}></div>;
                 break;
 
-            case ("salad"):
+            case BurgerIngredients.IngredientType.Salad:
                 ingredient = <div className={classes.Salad}></div>;
                 break;
 
-            case ("bacon"):
+            case BurgerIngredients.IngredientType.Bacon:
                 ingredient = <div className={classes.Bacon}></div>;
                 break;
 
