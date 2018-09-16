@@ -1,6 +1,3 @@
-/*
-box to position all controls
-*/
 .BuildControls {
     width: 100%;
     background-color: #cf8f2e;
@@ -11,3 +8,5 @@ box to position all controls
     margin: auto;
     padding: 10px 0
 }
+
+

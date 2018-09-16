@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 //import Aux from "../../hoc/Auxilliary";
 import Burger from '../../components/Burger/Burger';
-import BuildControls from "../../components/Burger/BuildControls/BuildControls"
+import BuildControls from "../../components/Burger/BuildControls/BuildControls";
+import classes from "../../components/Burger/BuildControls/BuildControls.css";
 
 class Ingredients {
   constructor(salad=0,bacon=0,cheese=0,meat=0) {
@@ -14,9 +15,9 @@ class Ingredients {
 
 const INGREDIENT_PRICES = Object.freeze({
   salad: 0.5,
-  cheese: 0.5,
-  meat: 0.5,
-  bacon: 0.5
+  cheese: 0.4,
+  meat: 1.3,
+  bacon: 0.7
 });
 export default class BurgerBuilder extends Component {
 
@@ -59,13 +60,17 @@ export default class BurgerBuilder extends Component {
     //update
     updatedIngredients[type] = updateCount;
 
-    const priceAddition = INGREDIENT_PRICES[type]
-    const oldPrice = this.state.oldCount;
+    const priceAddition = INGREDIENT_PRICES[type];
+    const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
 
+     console.log("newprce");
+     console.log(newPrice);
+     console.log("oldPrice");
+     console.log(oldPrice);
     this.setState(
       {
-        totaPrice: newPrice,
+        totalPrice: newPrice,
         ingredients: updatedIngredients
       }
     );
@@ -89,12 +94,12 @@ removeIngredientHandler = (type) => {
     updatedIngredients[type] = updateCount;
 
     const priceAddition = INGREDIENT_PRICES[type]
-    const oldPrice = this.state.oldCount;
+    const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice - priceAddition;
 
     this.setState(
       {
-        totaPrice: newPrice,
+        totalPrice: newPrice,
         ingredients: updatedIngredients
       }
     );
@@ -117,14 +122,17 @@ removeIngredientHandler = (type) => {
     }
   
     return ( //this.burger // main burger controls
-      <React.Fragment>
+      <React.Fragment >
         <Burger ingredients={this.state.ingredients}>
         </Burger>
-        <BuildControls
-          ingredientAdded={this.addIngredientHandler}
-          ingredientRemoved={this.removeIngredientHandler}
-          disabled={disabledInfo}
-        ></BuildControls>
+        <div className={classes.BuildControls}>
+          <BuildControls
+            ingredientAdded={this.addIngredientHandler}
+            ingredientRemoved={this.removeIngredientHandler}
+            disabled={disabledInfo}
+            totalPrice={this.state.totalPrice}
+          ></BuildControls>
+        </div>
       </React.Fragment>
     );
   };

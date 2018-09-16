@@ -34,6 +34,9 @@ const buildControls = (props) => {
     console.log(props);
     return (
         <div className={classes.BuildControls}>
+            <p>
+                CurrentPrice: <strong>{props.totalPrice.toFixed(2)}</strong>
+            </p>
             {controls.map(
                 (control) => {
                     return (
@@ -48,6 +51,10 @@ const buildControls = (props) => {
                     ) // return
                 } // map closure
             )}
+            <button
+                className={classes.OrderButton}>
+                ORDER NOW
+             </button>
         </div>
     )
 };
