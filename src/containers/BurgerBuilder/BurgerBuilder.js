@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import classes from "../../components/Burger/BuildControls/BuildControls.css";
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 
 class Ingredients {
   constructor(salad=0,bacon=0,cheese=0,meat=0) {
@@ -43,6 +45,10 @@ export default class BurgerBuilder extends Component {
 
       totalPrice: 4,
 
+      purchasable: false,
+
+      purchasing: false
+
   }
   
 
@@ -64,14 +70,11 @@ export default class BurgerBuilder extends Component {
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
 
-     console.log("newprce");
-     console.log(newPrice);
-     console.log("oldPrice");
-     console.log(oldPrice);
     this.setState(
       {
         totalPrice: newPrice,
-        ingredients: updatedIngredients
+        ingredients: updatedIngredients,
+        purchasable: true
       }
     );
   };
@@ -83,6 +86,11 @@ export default class BurgerBuilder extends Component {
 removeIngredientHandler = (type) => {
   const oldCount = this.state.ingredients[type];
   if (oldCount <= 0) {
+    this.setState(
+      {
+        purchasable: false
+      }
+    )
     return;
   }
     const updateCount = oldCount - 1;
@@ -105,6 +113,28 @@ removeIngredientHandler = (type) => {
     );
   };
 
+  /**
+   * Modal click
+   */
+  purchaseCancelhandler = () => {
+    this.setState(
+      {
+        purchasing:false
+      }
+    );
+  };
+
+  /**
+   * Order Now handlers
+   */
+  purchaseHandler = () => {
+    this.setState(
+      {
+        purchasing: true
+      }
+    )
+  }
+
 
   /**
    * Life cycle mmethods
@@ -117,22 +147,35 @@ removeIngredientHandler = (type) => {
 
     for (let key in disabledInfo)
     {
-      console.log(key);
+      //console.log(key);
       disabledInfo[key] = disabledInfo[key] <= 0
     }
   
     return ( //this.burger // main burger controls
       <React.Fragment >
+        <Modal
+          show={this.state.purchasing}
+          modalClosed={this.purchaseCancelhandler}
+        >
+          <OrderSummary
+            ingredients={this.state.ingredients}>
+          </OrderSummary>
+        </Modal>
+          
         <Burger ingredients={this.state.ingredients}>
         </Burger>
+
         <div className={classes.BuildControls}>
           <BuildControls
             ingredientAdded={this.addIngredientHandler}
             ingredientRemoved={this.removeIngredientHandler}
             disabled={disabledInfo}
             totalPrice={this.state.totalPrice}
+            purchaseHandler={this.purchaseHandler}
+            purchasable={this.state.purchasable}
           ></BuildControls>
         </div>
+        
       </React.Fragment>
     );
   };

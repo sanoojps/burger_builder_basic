@@ -16,7 +16,7 @@ const burger = (props) => {
             /**
              * array count check
              */
-            console.log(props.ingredients[key]);
+            //console.log(props.ingredients[key]);
             if (props.ingredients[key] < 0) {
                 return []
             }

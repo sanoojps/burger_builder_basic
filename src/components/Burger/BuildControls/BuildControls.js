@@ -30,8 +30,8 @@ const controls =
 ]
 
 const buildControls = (props) => {
-    console.log("props");
-    console.log(props);
+    //console.log("props");
+    //console.log(props);
     return (
         <div className={classes.BuildControls}>
             <p>
@@ -52,7 +52,11 @@ const buildControls = (props) => {
                 } // map closure
             )}
             <button
-                className={classes.OrderButton}>
+                className=
+                {classes.OrderButton}
+                onClick={props.purchaseHandler}
+                disabled={!props.purchasable}
+            >
                 ORDER NOW
              </button>
         </div>
