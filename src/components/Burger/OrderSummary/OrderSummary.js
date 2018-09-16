@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
 const propTypes = {
     ingredients: PropTypes.array,
     btnType: PropTypes.string,
-    clicked: PropTypes.func
+    clicked: PropTypes.func,
+    price: PropTypes.number
 }
 /* eslint-enable */
 
@@ -43,6 +44,13 @@ const orderSummary = (props) => {
                 {ingredientSummary}
             </ul>
             
+            <p>
+                <strong>
+                Total Price: {props.price.toFixed(2)}
+                </strong> 
+
+            </p>
+
             <p>
                 Continue To checkout?
             </p>

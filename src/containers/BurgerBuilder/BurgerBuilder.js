@@ -167,6 +167,7 @@ removeIngredientHandler = (type) => {
             ingredients={this.state.ingredients}
             purchasedCancelled={this.purchaseCancelhandler}
             purchaseContinued={this.purchaseContinueHandler}
+            price={this.state.totalPrice}
             >
           </OrderSummary>
         </Modal>
