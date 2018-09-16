@@ -7,19 +7,46 @@ import BurgerIngredients from
 
 const burger = (props) => {
 
+    /**
+     * Transform object to array
+     */
+    const transformedIngredients = 
+    transformIngredients(props).map(
+        (key) => {
+            return [...Array(props.ingredients[key])].map(
+                (_, i) => {
+                   return ( 
+                   <BurgerIngredients
+                        key={key + i}
+                        type={key}
+                    >
+                    </BurgerIngredients>
+                   )
+                } // map clousre
+            ) //map;
+        } //map closure
+        //map
+    ).reduce(
+        (array,element) => {
+            return array.concat(element);
+        },[]
+    ); // reduce
+
     return (
         <div className={classes.Burger}>
             <BurgerIngredients
                 type="bread-top">
             </BurgerIngredients>
 
-            <BurgerIngredients
+            {/* <BurgerIngredients
                 type="cheese">
             </BurgerIngredients>
 
             <BurgerIngredients
                 type="meat">
-            </BurgerIngredients>
+            </BurgerIngredients> */}
+
+            {transformedIngredients}
 
             <BurgerIngredients
                 type="bread-bottom">
@@ -28,6 +55,12 @@ const burger = (props) => {
 
     );
 
+};
+
+const transformIngredients = (props) => {
+    return Object.keys(
+        props.ingredients
+    );
 };
 
 export default burger
