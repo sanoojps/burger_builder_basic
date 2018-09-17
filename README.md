@@ -8,6 +8,7 @@ burger_builder_basic
 
 ## Project Organisation
 
+```
 <Components -<> Hold components that make up the Burger >
     <Burger --- positions burger ingredients>
         <BurgerIngredients  --  makes up each individual layer 
@@ -19,13 +20,10 @@ burger_builder_basic
 <Containers -- Wrapper for other components>
 </Containers>
 <hoc Higher Order Container To group adjacent JSX in place of a <div> </hoc>
+```
 
-
-1. each layer of burger represented by "BurgerIngredients"
-2. burger represented by "Burger"
-3. 
-
-
+1. each layer of burger represented by `BurgerIngredients`
+2. burger represented by `Burger`
 
 ## Folder Structure
 
