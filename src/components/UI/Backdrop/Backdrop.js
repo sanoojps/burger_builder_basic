@@ -8,6 +8,7 @@ import classes from './Backdrop.css';
 import PropTypes from 'prop-types';
 const propTypes = {
     clicked: PropTypes.func,
+    show: PropTypes.bool,
 }
 /* eslint-enable */
 

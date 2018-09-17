@@ -9,16 +9,10 @@ class App extends Component {
   render() {
     return (
       <div>
-
         <Layout>
-          
-            <BurgerBuilder>
-    
-            </BurgerBuilder>
-          
+          <BurgerBuilder>
+          </BurgerBuilder>
         </Layout>
-        
-
       </div>
     );
   }

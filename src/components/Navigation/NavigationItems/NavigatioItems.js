@@ -7,13 +7,13 @@ const navigatonItems = () => {
         <ul className={classes.NavigatonItems}>
             <NavigatonItem
                 link='/'
-                active="active"
+                active={true}
             >
                 Burger Builder
            </NavigatonItem>
+
             <NavigatonItem
                 link='/'
-                active="active"
             >
                 Checkout
            </NavigatonItem>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Button from '../../UI/Button/Button';
 
 
@@ -14,6 +14,24 @@ const propTypes = {
     price: PropTypes.number
 }
 /* eslint-enable */
+
+
+export default class OrderSummary extends Component {
+  render() {
+    return (
+      orderSummary(this.props)
+    )
+  }
+
+  componentWillUpdate = (nextProps, nextState) => {
+    console.log(
+        '[Order Summary] WillUpdate'
+        );
+  }
+  
+
+}
+
 
 const orderSummary = (props) => {
 
@@ -73,5 +91,3 @@ const orderSummary = (props) => {
     )
 
 }
-
-export default  orderSummary;

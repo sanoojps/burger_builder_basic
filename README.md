@@ -18,3 +18,45 @@ Project Organisation
 1. each layer of burger represented by "BurgerIngredients"
 2. burger represented by "Burger"
 3. 
+
+- [Folder Structure](#folder-structure)
+---------------------------------------
+
+## Folder Structure
+my-app/
+  README.md
+  node_modules/
+  package.json
+  public/
+    index.html
+    favicon.ico
+  src/
+    assets/
+        images/
+            burger-logo.png 
+    components/
+        Burger/
+            BuildControls/
+            BurgerIngredients/
+            OrderSummary/
+        Layout/
+        Logo/
+        Navigation/
+            NavigationItems/
+                NavigationItem/
+            SideDrawer/
+                DrawerToggle/
+            Toolbar/
+        UI/
+            Backdrop/
+            Button/
+            Modal/
+    containers/
+        BurgerBuilder/
+    hoc/        
+    App.css
+    App.js
+    App.test.js
+    index.css
+    index.js
+    logo.svg

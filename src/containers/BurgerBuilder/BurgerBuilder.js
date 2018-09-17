@@ -159,6 +159,7 @@ removeIngredientHandler = (type) => {
   
     return ( //this.burger // main burger controls
       <React.Fragment >
+
         <Modal
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelhandler}
@@ -168,10 +169,11 @@ removeIngredientHandler = (type) => {
             purchasedCancelled={this.purchaseCancelhandler}
             purchaseContinued={this.purchaseContinueHandler}
             price={this.state.totalPrice}
-            >
+          >
           </OrderSummary>
-        </Modal>
           
+        </Modal>
+
         <Burger ingredients={this.state.ingredients}>
         </Burger>
 
@@ -183,9 +185,10 @@ removeIngredientHandler = (type) => {
             totalPrice={this.state.totalPrice}
             purchaseHandler={this.purchaseHandler}
             purchasable={this.state.purchasable}
-          ></BuildControls>
+          >
+          </BuildControls>
         </div>
-        
+
       </React.Fragment>
     );
   };

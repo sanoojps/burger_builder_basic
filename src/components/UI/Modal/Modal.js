@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react'
 import classes from "./Modal.css";
 import Backdrop from '../Backdrop/Backdrop'
 
@@ -8,11 +8,10 @@ import Backdrop from '../Backdrop/Backdrop'
 /* eslint-disable */
 import PropTypes from 'prop-types';
 const propTypes = {
-    show: PropTypes.func,
-    clicked: PropTypes.func
+    show: PropTypes.bool.isRequired,
+    modalClosed: PropTypes.func.isRequired
 }
 /* eslint-enable */
-
 
 const modal = (props) => {
 
@@ -46,4 +45,32 @@ const modal = (props) => {
     )
 }
 
-export default modal;
+export default class Modal extends Component {
+  render() {
+    return (
+     modal(this.props)
+    )
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+      console.log(
+        '[Modal] componentWillUpdate'
+      );
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+      if (nextProps.show !== this.props.show) {
+          return true
+      } 
+
+      return false;
+  }
+  
+
+}
+
+/**
+ * Prop type validation
+ */
+Modal.propTypes = propTypes;
+
