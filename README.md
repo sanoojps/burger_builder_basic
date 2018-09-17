@@ -1,6 +1,12 @@
-# burger_builder_basic
+burger_builder_basic
 
-Project Organisation
+## Table of Contents
+- [Folder Structure](#folder-structure)
+---------------------------------------
+- [Project Organization](#project-organization)
+----------------------------------------
+
+## Project Organisation
 ---------------------
 <Components -<> Hold components that make up the Burger >
     <Burger --- positions burger ingredients>
@@ -19,8 +25,7 @@ Project Organisation
 2. burger represented by "Burger"
 3. 
 
-- [Folder Structure](#folder-structure)
----------------------------------------
+
 
 ## Folder Structure
 my-app/
