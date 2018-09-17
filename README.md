@@ -1,10 +1,10 @@
 burger_builder_basic
 
 ## Table of Contents
+
 - [Folder Structure](#folder-structure)
----------------------------------------
 - [Project Organization](#project-organization)
-----------------------------------------
+
 
 ## Project Organisation
 ---------------------
