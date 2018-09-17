@@ -7,7 +7,7 @@ burger_builder_basic
 
 
 ## Project Organisation
----------------------
+
 <Components -<> Hold components that make up the Burger >
     <Burger --- positions burger ingredients>
         <BurgerIngredients  --  makes up each individual layer 
@@ -28,6 +28,8 @@ burger_builder_basic
 
 
 ## Folder Structure
+
+```
 my-app/
   README.md
   node_modules/
@@ -65,3 +67,4 @@ my-app/
     index.css
     index.js
     logo.svg
+```
