@@ -1,6 +1,6 @@
 burger_builder_basic
 
-This project is a recreation of an application built as a part of  [react-the-complete-guide-incl-redux](https://www.udemy.com/react-the-complete-guide-incl-redux/) course (section-8) from [udemy](https://www.udemy.com/)
+This project is a recreation of an application built as a part of  [react-the-complete-guide-incl-redux](https://www.udemy.com/react-the-complete-guide-incl-redux/) course (section-8) from [udemy](https://www.udemy.com/).
 ## Table of Contents
 
 - [Folder Structure](#folder-structure)
