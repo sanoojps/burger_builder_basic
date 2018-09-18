@@ -29,9 +29,14 @@ export default class OrderSummary extends Component {
         );
   }
   
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (this.props.price !== nextProps.props.price); 
+  }
+  
 
 }
 
+OrderSummary.propTypes = propTypes;
 
 const orderSummary = (props) => {
 
