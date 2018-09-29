@@ -8,7 +8,7 @@ import Button from '../../UI/Button/Button';
 /* eslint-disable */
 import PropTypes from 'prop-types';
 const propTypes = {
-    ingredients: PropTypes.array,
+    ingredients: PropTypes.object,
     btnType: PropTypes.string,
     clicked: PropTypes.func,
     price: PropTypes.number
@@ -30,7 +30,14 @@ export default class OrderSummary extends Component {
   }
   
   shouldComponentUpdate = (nextProps, nextState) => {
-    return (this.props.price !== nextProps.props.price); 
+    console.log("shouldComponentUpdate");
+      console.log(this.props.price);
+      console.log(nextProps.price);
+      
+    const current_price = this.props.price;
+    const incoming_props = nextProps.price;
+
+    return (current_price !== incoming_props); 
   }
   
 

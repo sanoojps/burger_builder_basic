@@ -6,6 +6,8 @@ import classes from "../../components/Burger/BuildControls/BuildControls.css";
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 
+import axios from '../../Axios-Orders'; 
+
 class Ingredients {
   constructor(salad=0,bacon=0,cheese=0,meat=0) {
     this.salad = salad;
@@ -140,6 +142,45 @@ removeIngredientHandler = (type) => {
    */
   purchaseContinueHandler = () => {
     alert('You continue!');
+
+    /***
+     * Checkout Flow
+     */
+
+
+     const order = {
+       ingredients: this.state.ingredients,
+       price: this.state.totalPrice,
+       customer: {
+         name: "Max",
+         address: {
+           street: 'TestStreet 1',
+           zipCode: '22222',
+           country: 'India',
+         },
+         email: 'test@test.com'
+       },
+       deliveryMethod: 'fastest'
+     };
+
+    axios
+    .post(
+      "/orders.json",
+      order
+    )
+    .then(
+      (response) => {
+        console.log(response);
+        
+      }
+    )
+    .catch(
+      (error) => {
+        console.log(error);
+      }
+    )
+
+
   }
 
   /**
