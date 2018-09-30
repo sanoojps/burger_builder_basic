@@ -7,6 +7,9 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 
 import axios from '../../Axios-Orders'; 
+import Spinner from '../../components/UI/Spinner/Spinner';
+
+import withErrorhandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 class Ingredients {
   constructor(salad=0,bacon=0,cheese=0,meat=0) {
@@ -23,7 +26,8 @@ const INGREDIENT_PRICES = Object.freeze({
   meat: 1.3,
   bacon: 0.7
 });
-export default class BurgerBuilder extends Component {
+
+class BurgerBuilder extends Component {
 
 
   // constructor(props) {
@@ -49,7 +53,9 @@ export default class BurgerBuilder extends Component {
 
       purchasable: false,
 
-      purchasing: false
+      purchasing: false,
+
+      loading: false
 
   }
   
@@ -148,6 +154,12 @@ removeIngredientHandler = (type) => {
      */
 
 
+    this.setState(
+      {
+        loading:true,
+      }
+    )
+
      const order = {
        ingredients: this.state.ingredients,
        price: this.state.totalPrice,
@@ -172,11 +184,26 @@ removeIngredientHandler = (type) => {
       (response) => {
         console.log(response);
         
+        this.setState(
+          {
+            loading:false,
+            purchasing: false
+          }
+        );
+
       }
     )
     .catch(
       (error) => {
         console.log(error);
+
+        this.setState(
+          {
+            loading:false,
+            purchasing: false
+          }
+        );
+
       }
     )
 
@@ -198,6 +225,25 @@ removeIngredientHandler = (type) => {
       disabledInfo[key] = disabledInfo[key] <= 0
     }
   
+
+    let order_summary = 
+    (
+       <OrderSummary
+            ingredients={this.state.ingredients}
+            purchasedCancelled={this.purchaseCancelhandler}
+            purchaseContinued={this.purchaseContinueHandler}
+            price={this.state.totalPrice}
+          >
+          </OrderSummary>
+    );
+
+    /**
+     * Spinner
+     */
+    if (this.state.loading) {
+      order_summary = <Spinner></Spinner> ;
+    }
+
     return ( //this.burger // main burger controls
       <React.Fragment >
 
@@ -205,13 +251,7 @@ removeIngredientHandler = (type) => {
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelhandler}
         >
-          <OrderSummary
-            ingredients={this.state.ingredients}
-            purchasedCancelled={this.purchaseCancelhandler}
-            purchaseContinued={this.purchaseContinueHandler}
-            price={this.state.totalPrice}
-          >
-          </OrderSummary>
+          {order_summary}
           
         </Modal>
 
@@ -245,3 +285,6 @@ removeIngredientHandler = (type) => {
           </React.Fragment>
   ); 
 }
+
+
+export default withErrorhandler(BurgerBuilder,axios);

@@ -25,6 +25,8 @@ This project is a recreation of an application built as a part of  [react-the-co
 
 1. each layer of burger represented by `BurgerIngredients`
 2. burger represented by `Burger`
+3. CSS Spinner
+https://projects.lukehaas.me/css-loaders/
 
 ## Folder Structure
 
