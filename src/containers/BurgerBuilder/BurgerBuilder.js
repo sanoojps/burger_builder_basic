@@ -42,20 +42,22 @@ class BurgerBuilder extends Component {
     /**
    * Needs to pass this to Burger
    */
-    ingredients: new Ingredients(
-      0, //salad
-      0, //bacon
-      0, //cheese
-      0 // meat
-      ),
+    // ingredients: new Ingredients(
+    //   0, //salad
+    //   0, //bacon
+    //   0, //cheese
+    //   0 // meat
+    //   ),
 
+    ingredients: null,
       totalPrice: 4,
 
       purchasable: false,
 
       purchasing: false,
 
-      loading: false
+      loading: false,
+      error:false,
 
   }
   
@@ -160,7 +162,8 @@ removeIngredientHandler = (type) => {
       }
     )
 
-     const order = {
+     const order =
+     {
        ingredients: this.state.ingredients,
        price: this.state.totalPrice,
        customer: {
@@ -226,7 +229,32 @@ removeIngredientHandler = (type) => {
     }
   
 
-    let order_summary = 
+    let order_summary = null
+    let burger = this.state.error ? "We got an error" :<Spinner></Spinner>
+
+    if (this.state.ingredients) {
+      burger = (
+
+        <React.Fragment>
+        <Burger ingredients={this.state.ingredients}>
+          </Burger>
+  
+          <div className={classes.BuildControls}>
+            <BuildControls
+              ingredientAdded={this.addIngredientHandler}
+              ingredientRemoved={this.removeIngredientHandler}
+              disabled={disabledInfo}
+              totalPrice={this.state.totalPrice}
+              purchaseHandler={this.purchaseHandler}
+              purchasable={this.state.purchasable}
+            >
+            </BuildControls>
+          </div>
+        </React.Fragment>
+  
+      );
+
+      order_summary = 
     (
        <OrderSummary
             ingredients={this.state.ingredients}
@@ -236,6 +264,7 @@ removeIngredientHandler = (type) => {
           >
           </OrderSummary>
     );
+    }
 
     /**
      * Spinner
@@ -243,6 +272,7 @@ removeIngredientHandler = (type) => {
     if (this.state.loading) {
       order_summary = <Spinner></Spinner> ;
     }
+
 
     return ( //this.burger // main burger controls
       <React.Fragment >
@@ -255,20 +285,7 @@ removeIngredientHandler = (type) => {
           
         </Modal>
 
-        <Burger ingredients={this.state.ingredients}>
-        </Burger>
-
-        <div className={classes.BuildControls}>
-          <BuildControls
-            ingredientAdded={this.addIngredientHandler}
-            ingredientRemoved={this.removeIngredientHandler}
-            disabled={disabledInfo}
-            totalPrice={this.state.totalPrice}
-            purchaseHandler={this.purchaseHandler}
-            purchasable={this.state.purchasable}
-          >
-          </BuildControls>
-        </div>
+       {burger}
 
       </React.Fragment>
     );
@@ -284,6 +301,35 @@ removeIngredientHandler = (type) => {
               <div>Build Controls</div>
           </React.Fragment>
   ); 
+
+
+  componentDidMount = () => {
+    axios
+    .get(
+      'https://react-my-burger-1e22b.firebaseio.com/orders/ingredients.json'
+    )
+    .then(
+      (response) => {
+        this.setState(
+          {
+            ingredients: response.data,
+          }
+        )
+      }
+    )
+    .catch(
+      (error) => {
+        this.setState(
+          {
+            error:true,
+          }
+        )
+      }
+    )
+  }
+  
+
+
 }
 
 
